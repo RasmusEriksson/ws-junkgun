@@ -54,6 +54,7 @@ img,
 picture {
   max-width: 100%;
   display: block;
+  image-rendering: pixelated;
 }
 
 /* Inherit fonts for inputs and buttons */

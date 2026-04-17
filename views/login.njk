@@ -1,0 +1,9 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+    <form action="/users/login" method="post">
+        <input type="text" name="username" placeholder="username">
+        <button type="submit">Log In!</button>
+    </form>
+
+{% endblock %}

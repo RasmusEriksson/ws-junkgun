@@ -13,12 +13,42 @@ body {
     padding-bottom: 3rem;
 }
 
-.header-flex {
+.header{
     display: flex;
     align-items: center;
-    gap: 1rem;
+    justify-content: center;
+    padding: 1rem;
 
-    h1 {
+    flex-grow: 1;
+    gap: 1rem;
+    margin: 0rem;
+
+    img {
         margin-top: 0;
+        width: min(90% - 1rem, var(--container-max, 30ch));
+
     }
+}
+
+
+.card {
+  display: grid;
+  width: min(75% - 1rem, var(--container-max, 15ch));
+  text-align: center;
+
+  grid-template-areas: "title" "image" "description";
+  grid-template-rows: 0.5fr 2fr 1fr;
+
+  background-color: rgb(194, 188, 179);
+
+  img {
+    justify-self: stretch;
+    align-self: stretch;
+  }
+}
+
+.cardList {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
