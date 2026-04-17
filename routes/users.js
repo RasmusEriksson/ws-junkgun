@@ -1,5 +1,6 @@
 import express from "express"
 import {body, param, validationResult} from "express-validator"
+import pool from "../config/db.js"
 
 const router = express.Router()
 
@@ -17,9 +18,18 @@ router.post("/signin",
     body("email").trim().notEmpty().withMessage("email needed"),
     body("password").notEmpty().withMessage("password needed"),
     body("password_confirm").notEmpty().withMessage("you need to confirm your password by writing it twice"),
-    
+
     async (req,res,next) =>{
-        res.json(req.body)
+        try {
+            const [rows] = await pool.query(`SELECT * FROM user`)
+
+            res.json(req.body)
+            console.log(rows)
+        }
+        catch(err) {
+            console.error(err)
+            res.status(500).json({ error: "Något gick fel"})
+        }
 })
 
 export default router
