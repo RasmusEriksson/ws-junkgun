@@ -5,11 +5,15 @@
 <main class="wrapper">
     <p>Welcome to the junkgun ranking website, this is made as a school project to get better att using databases and handling user input for a webbserver</p>
     <a href="/users/signin">SIGN IN TO THE WEBSITE NOW!</a>
-    <p>{{username}}</p>
+
+    {% if user %}
+        <p>{{user.username}}</p>
+    {% endif %}
+    
     <ul class="cardList">
-        {% include "components/card.njk" %}
-        {% include "components/card.njk" %}
-        {% include "components/card.njk" %}
+        {% for piece in pieces %}
+            {% include "components/card.njk" %}
+        {% endfor %}
     </ul>
     <p>"I LOVE JUNKGUN!"- johnjunk probably idk I haven't played the game</p>
 </main>

@@ -6,6 +6,7 @@ import session from 'express-session'
 
 import indexRouter from './routes/index.js'
 import userRouter from './routes/users.js'
+import junkRouter from './routes/junk.js'
 
 const app = express()
 const port = 3000 || process.env.PORT
@@ -39,6 +40,7 @@ app.use(session({
 
 app.use("/", indexRouter)
 app.use("/users", userRouter)
+app.use("/junk", junkRouter)
 
 app.use((req, res, next) => {
     res.status(404).send("Sidan kunde inte hittas.")

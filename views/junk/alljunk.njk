@@ -1,0 +1,15 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+{% include "components/header.njk" %}
+<main class="wrapper">
+    <h1>Here are allllll pieces</h1>
+
+    <ul class="cardList">
+        {% for piece in pieces %}
+            {% include "components/card.njk" %}
+        {% endfor %}
+    </ul>
+</main>
+{% include "components/footer.njk" %}
+{% endblock %}

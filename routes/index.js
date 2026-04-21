@@ -1,20 +1,31 @@
 import express from "express"
+import pool from "../config/db.js"
 
 const router = express.Router()
 
-router.get("/", (req, res) => {
-    var username = "not logged in"
-    if (req.session.userId) {
-        username = req.session.username
+router.get("/", async (req, res, next) => {
+    
+    try {
+
+        var user = null
+        if (req.session.authenticated) {
+            user = req.session
+        }
+
+        var [rows] = await pool.query(` 
+            SELECT * FROM piece
+            ORDER BY rating DESC
+            `)
+
+        console.log(rows)
+        res.render("index.njk",
+            { title: "Junkgun", message: "let's rate some stuff", user: user, pieces: rows  }
+        )
     }
-
-    res.render("index.njk",
-        { title: "Node js startrepo", message: "Använd det här repot som en grund för dina projekt.",username: username }
-    )
+    catch(err) {
+        next(err)
+    }
 })
 
-router.get('/error', (req, res) => {
-    throw new Error('Test error')
-})
 
 export default router

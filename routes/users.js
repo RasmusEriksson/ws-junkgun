@@ -45,6 +45,7 @@ router.post("/login",
                 return res.status(401).json({ error: "INCORRECT USERNAME OR PASSWORD" })
             }
 
+            req.session.authenticated = true
             req.session.userId = user.id
             req.session.username = user.name
 
