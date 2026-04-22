@@ -56,9 +56,16 @@ router.get("/:id",
             var image_string = "/images/pieces/" + piece.name + ".jpg"
             console.log("THIS IS THE URL: ", image_string)
 
-            if (fs.existsSync(image_string)){
+            if (fs.existsSync("./public"+image_string)){
                 image_url = image_string
+                console.log("exists!")
             }
+            else {
+                console.log("no exist")
+            }
+
+            console.log(image_url)
+
 
             return res.render("junk/junk.njk",
                 {user: user, piece: piece , img: image_url}
@@ -75,12 +82,13 @@ router.get("/:id",
     }
 })
 
-function isValidUrl(string) {
+
+async function exists (path) {  
   try {
-    new URL(string);
-    return true;
-  } catch (err) {
-    return false;
+    await fs.access(path)
+    return true
+  } catch {
+    return false
   }
 }
 

@@ -1,0 +1,33 @@
+.information {
+    margin-inline: auto;
+    width: min(100%, var(--container-max, 80ch));
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+
+    background-color: gray;
+}
+
+.description {
+    width: min(100%, var(--container-max, 60ch));
+}
+
+.piece {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: min(50%, var(--container-max, 20ch));
+    aspect-ratio: 1;
+    
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.stats {
+    width: min(100%, var(--container-max, 60ch));
+}
