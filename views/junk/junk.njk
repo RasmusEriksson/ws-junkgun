@@ -1,0 +1,20 @@
+{% extends "junkLayout.njk" %}
+
+{% block content %}
+<main>
+    <div class="information">
+        <div class="description">
+            <h1> DESCRIPTION </h1>
+            <p>{{piece.description}}</p>
+        </div>
+        <div class="piece">
+            <img src="{{img}}" alt="{{piece.name}}">
+        </div>
+        <div class="stats">
+            <p>none yet :P</p>
+
+        </div>
+    </div>
+</main>
+
+{% endblock %}
