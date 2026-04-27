@@ -35,9 +35,13 @@
 
 
 .filled {
+    background-size: cover;
+    background-image: url("/images/icons/star.png");
     background-color: yellow;
 }
 
 .unfilled {
+    background-size: cover;
+    background-image: url("/images/icons/star_empty.png");
     background-color: gray;
 }

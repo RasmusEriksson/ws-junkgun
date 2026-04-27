@@ -1,7 +1,51 @@
 <div class="star_container">
     {% set id_list = [1,2,3,4,5] %}
 
-    {% for id in id_list %}
-        {% include "components/star.njk"%}
-    {% endfor %}
+    <form action="/junk/{{piece.id}}" method="post">
+        <input type="text" id="hidden_star" name="star_rating" value="0">
+        {% for id in id_list %}
+            {% include "components/star.njk"%}
+        {% endfor %}
+        <button type="submit">SUBMIT</button>
+    </form>
 </div>
+
+<script>
+    var input_field = document.getElementById("hidden_star")
+    var Current_selected = 0
+
+    function update_star(ID) {
+        console.log(ID)
+        var target_button = document.getElementById(String(ID))
+        var target_class = "filled"
+        
+
+        if (target_button.classList.contains("filled") && ID == Current_selected){
+            target_class = "unfilled"
+            Current_selected = 0
+        }
+        else {
+            Current_selected = ID
+        }
+
+        input_field.value = String(Current_selected)
+
+        for (let i = 1; i <= 5; i++) {
+            var button = document.getElementById(String(i))
+
+            if (i <= ID) {
+                if (target_class == "filled") {
+                    if (target_button.classList.contains("unfilled")){
+                        button.classList.replace("unfilled","filled")
+                    }
+                }
+                else {
+                    button.classList.replace("filled","unfilled")
+                }
+            }
+            else {
+                button.classList.replace("filled","unfilled")
+            }
+        }
+    }
+</script>

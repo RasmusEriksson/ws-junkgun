@@ -1,6 +1,6 @@
 import express from "express"
 import pool from "../config/db.js"
-import {param, validationResult } from "express-validator"
+import {body, param, validationResult } from "express-validator"
 import fs from "fs"
 
 const router = express.Router()
@@ -54,18 +54,10 @@ router.get("/:id",
 
             var image_url = "/images/noImage.jpg"
             var image_string = "/images/pieces/" + piece.name + ".jpg"
-            console.log("THIS IS THE URL: ", image_string)
 
             if (fs.existsSync("./public"+image_string)){
                 image_url = image_string
-                console.log("exists!")
             }
-            else {
-                console.log("no exist")
-            }
-
-            console.log(image_url)
-
 
             return res.render("junk/junk.njk",
                 {user: user, piece: piece , img: image_url}
@@ -82,6 +74,10 @@ router.get("/:id",
     }
 })
 
+router.post("/:id", async (req,res,next) => {
+    console.log("this is the submitted star rating!:   ",req.body.star_rating)
+    return res.redirect("../junk/"+String(req.params.id))
+})
 
 async function exists (path) {  
   try {
