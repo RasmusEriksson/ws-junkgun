@@ -33,15 +33,41 @@
 }
 
 
+.star {
+    width: min(15%, var(--container-max, 6ch));
+    aspect-ratio: 1;
+    background-color: rgba(240, 248, 255, 0);
+    border-style: none;
+
+    * {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(85%) saturate(100%) invert(0%) sepia(13%) saturate(1276%) hue-rotate(350deg) brightness(106%) contrast(105%);
+    }
+}
 
 .filled {
-    background-size: cover;
-    background-image: url("/images/icons/star.png");
-    background-color: yellow;
+    .full {
+        display: block;
+    }
+    .full:hover {
+        filter: brightness(98%) saturate(100%) invert(0%) sepia(13%) saturate(1276%) hue-rotate(350deg) brightness(106%) contrast(105%);
+    }
+    .empty {
+        display: none;
+    }
 }
 
 .unfilled {
-    background-size: cover;
-    background-image: url("/images/icons/star_empty.png");
-    background-color: gray;
+    .empty {
+        filter: brightness(50%) saturate(100%) invert(0%) sepia(13%) saturate(1276%) hue-rotate(350deg) brightness(106%) contrast(105%);
+        display: block;
+    }
+    .empty:hover {
+        filter: brightness(65%) saturate(100%) invert(0%) sepia(13%) saturate(1276%) hue-rotate(350deg) brightness(106%) contrast(105%);
+    }
+    .full {
+        display: none;
+    }
 }
