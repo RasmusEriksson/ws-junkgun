@@ -1,13 +1,13 @@
 
-<button class="unfilled" id="{{local_id}}" onclick="update_star()">
-    <p>CLICK ME!</p>
+<button class="unfilled" id="{{id}}" onclick='update_star({{id}})'>
+    <p>CLICK ME! {{id}}</p>
 </button>
 
 <script>
 
-    function update_star() {
+    function update_star(ID) {
         console.log(ID)
-        var button = document.getElementById(String(ID))
+        
 
         if (button.classList.contains("unfilled")){
             button.classList.replace("unfilled","filled")
@@ -17,6 +17,8 @@
         }
 
         for (let i = 1; i <= 5; i++) {
+            var button = document.getElementById(String(i))
+            
             console.log(i)
         }
     }
