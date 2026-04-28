@@ -2,11 +2,11 @@
     {% set id_list = [1,2,3,4,5] %}
 
     <form action="/junk/{{piece.id}}" method="post">
-        <input type="text" id="hidden_star" name="star_rating" value="0">
+        <input type="hidden" id="hidden_star" name="star_rating" value="0">
         {% for id in id_list %}
             {% include "components/star.njk"%}
         {% endfor %}
-        <button type="submit">SUBMIT</button>
+        <button type="submit" class="submit_button">SUBMIT</button>
     </form>
 </div>
 

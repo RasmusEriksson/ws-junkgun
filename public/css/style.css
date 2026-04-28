@@ -1,5 +1,14 @@
 @import url(./junk.css);
 
+:root {
+    --lime-cream: #edff71ff;
+    --khaki-beige: #baa898ff;
+    --mauve-shadow: #684756ff;
+    --dark-slate-grey: #204e4aff;
+    --granite: #3b5249ff;
+}
+
+
 body {
   font-family: sans-serif;
   font-size: 1.2rem;
@@ -20,6 +29,8 @@ body {
     align-items: center;
     justify-content: center;
     padding: 1rem;
+    background-color: var(--khaki-beige);
+    width: 100%;
 
     flex-grow: 1;
     gap: 1rem;
@@ -30,6 +41,19 @@ body {
         width: min(90% - 1rem, var(--container-max, 30ch));
 
     }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: var(--khaki-beige);
+  width: 100%;
+
+  flex-grow: 1;
+  gap: 1rem;
+  margin: 0rem;
 }
 
 
@@ -44,8 +68,11 @@ body {
   background-color: rgb(194, 188, 179);
 
   img {
-    justify-self: stretch;
-    align-self: stretch;
+    justify-self: center;
+    align-self: center;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
   }
 }
 

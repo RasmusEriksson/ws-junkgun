@@ -2,7 +2,7 @@
 
 {% block content %}
 <main>
-    <div class="information">
+    <div class="information region">
         <div class="description">
             <h1> DESCRIPTION </h1>
             <p>{{piece.description}}</p>
@@ -12,10 +12,8 @@
         </div>
         <div class="stats">
             <p>none yet :P</p>
-        
-        {% include "components/starRating.njk" %}
-
         </div>
+        {% include "components/starRating.njk" %}
     </div>
 </main>
 
