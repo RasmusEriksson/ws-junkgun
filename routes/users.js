@@ -46,7 +46,7 @@ router.post("/login",
             }
 
             req.session.authenticated = true
-            req.session.userId = user.id
+            req.session.user_id = user.id
             req.session.username = user.name
 
             return res.redirect("/")

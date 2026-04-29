@@ -2,6 +2,7 @@ import express from "express"
 import pool from "../config/db.js"
 import {body, param, validationResult } from "express-validator"
 import fs from "fs"
+import { get } from "http"
 
 const router = express.Router()
 
@@ -13,6 +14,26 @@ function check_piece_img(piece_name) {
         image_url = image_string
     }
     return image_url
+}
+
+async function get_piece_rating(piece_id) {
+    var [ratings] = await pool.query(` 
+        SELECT * FROM rating
+        WHERE rating.piece_id = ?
+    `,[piece_id])
+
+    var rating_value = 0
+    var amount = ratings.length
+
+    ratings.forEach((rating) => {
+        rating_value += rating.rating
+    })
+
+    if (amount <= 0) {
+        amount = 1
+    }
+
+    return Math.round((rating_value/amount)*10)/10
 }
 
 router.get("/", async (req, res, next) => {
@@ -63,8 +84,12 @@ router.get("/:id",
             WHERE piece.id = ?
             `,[pieceID])
         
+        
         if (rows.length > 0) {
-            const piece = rows[0]
+            var piece = rows[0]
+
+            const final_rate = await get_piece_rating(pieceID)
+            piece["rating"] = final_rate
 
             var image_url = check_piece_img(piece.name)
 
@@ -87,22 +112,44 @@ router.post("/:id",
     param("id").isInt().withMessage("ID must be a whole integer!"),
     body("star_rating").isInt().withMessage("RATING NOT INT"),
 
+    
     async (req,res,next) => {
+        if (req.session.authenticated) {
+            const errors = validationResult(req)
+            if (!errors.isEmpty()){
+                return res.status(400).json({erorrs: errors.array()})
+            }
 
-        const errors = validationResult(req)
-        if (!errors.isEmpty()){
-            return res.status(400).json({erorrs: errors.array()})
+            const star_rating = req.body.star_rating
+            const piece_id = req.params.id
+            const user_id = req.session.user_id
+
+
+
+            //Check if rating already exists if logged in
+            
+            var [rows] = await pool.query(`
+                    SELECT rating.id, piece.rating, piece.rating_amount FROM rating
+                    INNER JOIN piece ON rating.piece_id = piece.id
+                    WHERE rating.user_id = ? AND rating.piece_id = ?
+                `,[user_id, piece_id])
+            
+            if (rows.length > 0) {
+                await pool.query(`
+                        UPDATE rating
+                        SET rating = ?
+                        WHERE user_id = ? AND piece_id = ?
+                    `,[star_rating, user_id, piece_id])
+            }
+            else {
+                await pool.query(`
+                        INSERT INTO rating (user_id, piece_id, rating) VALUES(?,?,?) 
+                    `,[user_id, piece_id, star_rating])
+            }
         }
-
-        const star_rating = req.body.star_rating
-        const piece_id = req.params.id
-        /*
-        var [rows] = pool.query(`
-                SELECT * FROM rating
-                WHERE rating.
-            `)  */
-
-
+        else {
+            throw new Error("You need to be authenticated to post your rating")
+        }
         return res.redirect("../junk/"+String(req.params.id))
 })
 

@@ -1,3 +1,4 @@
+{% if user.authenticated %}
 <div class="star_container">
     {% set id_list = [1,2,3,4,5] %}
 
@@ -9,6 +10,7 @@
         <button type="submit" class="submit_button">SUBMIT</button>
     </form>
 </div>
+{% endif %}
 
 <script>
     var input_field = document.getElementById("hidden_star")
