@@ -1,0 +1,9 @@
+<div class="stat">
+    <img src="/images/traitIcons/{{stat.name}}.png" alt="{{stat.name}}">
+    <p class="value">{{stat.value}}</p>
+
+    {% if stat.con_range > 0 %}
+    <img src="/images/traitIcons/con_range.png" alt="connection_range">
+    <p>{{stat.con_range}}</p>
+    {% endif %}
+</div>

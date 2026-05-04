@@ -60,7 +60,7 @@ router.get("/:id",
         
         
         if (rows.length > 0) {
-            rows = await set_piece_data(rows[0],rows)
+            rows = await set_piece_data(rows[0],rows,true)
             console.log(rows)
             const piece = rows[0]
             /*

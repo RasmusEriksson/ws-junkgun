@@ -11,7 +11,11 @@
             {% include "components/card.njk" %}
         </div>
         <div class="stats">
-            <p>none yet :P</p>
+            <div class="stat_container">
+                {% for stat in piece.stats%}
+                    {% include "components/stat.njk" %}
+                {% endfor %}
+            </div>
             {% set functional = true %}
             {% include "components/starRating.njk" %}
         </div>
