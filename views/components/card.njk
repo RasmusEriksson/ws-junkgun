@@ -1,5 +1,8 @@
 <div class="card">
     <a href="/junk/{{piece.id}}">{{piece.name}}</a>
     <img src="{{piece.image_url}}" alt="{{piece.name}}">
-    <p>{{piece.rating}}/5</p>
+    {% if piece.connections %}
+        <p>{{piece.rating}}/5</p>
+    {% endif %}
+    {% include "components/starRating.njk" %}
 </div>

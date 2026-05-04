@@ -1,16 +1,26 @@
-{% if user.authenticated %}
 <div class="star_container">
     {% set id_list = [1,2,3,4,5] %}
 
+    {% if functional and authenticated %}
     <form action="/junk/{{piece.id}}" method="post">
         <input type="hidden" id="hidden_star" name="star_rating" value="0">
         {% for id in id_list %}
-            {% include "components/star.njk"%}
+            {% include "components/starFunctional.njk"%}
         {% endfor %}
         <button type="submit" class="submit_button">SUBMIT</button>
     </form>
+    {% elif not functional %}
+    <div class="star_showcase">
+        {% for id in id_list %}
+            {% if piece.rating_rounded >= id %}
+                {% include "components/star.njk" %}
+            {% else %}
+                {% include "components/starEmpty.njk" %}
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
 </div>
-{% endif %}
 
 <script>
     var input_field = document.getElementById("hidden_star")

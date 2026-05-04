@@ -2,7 +2,6 @@ import express from "express"
 import pool from "../config/db.js"
 import {body, param, validationResult } from "express-validator"
 import fs from "fs"
-import { get } from "http"
 
 const router = express.Router()
 
@@ -47,11 +46,21 @@ router.get("/", async (req, res, next) => {
             SELECT * FROM piece
             ORDER BY rating DESC
             `)
-        
-        rows.forEach((piece,index) => {
-            var image_url = check_piece_img(piece.name)
+
+
+        for (const piece of rows)  {
+            const index = rows.indexOf(piece)
+            const image_url = check_piece_img(piece.name)
             rows[index]["image_url"] = image_url
-        })
+            const rating = await get_piece_rating(piece.id)
+            const rating_rounded = Math.round(rating)
+            rows[index]["rating"] = rating
+            rows[index]["rating_rounded"] = rating_rounded
+            console.log(rows[index])
+            
+        }
+
+        console.log(rows)
 
         res.render("junk/alljunk.njk",
             { title: "Junkpieces", user: user, pieces: rows  }

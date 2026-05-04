@@ -8,12 +8,12 @@
             <p>{{piece.description}}</p>
         </div>
         <div class="piece">
-            <img src="{{img}}" alt="{{piece.name}}">
-            <p>{{piece.rating}}/5</p>
+            {% include "components/card.njk" %}
         </div>
         <div class="stats">
             <p>none yet :P</p>
         </div>
+        {% set functional = true %}
         {% include "components/starRating.njk" %}
     </div>
 </main>
