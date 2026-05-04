@@ -61,10 +61,11 @@ body {
 .card {
   display: grid;
   width: min(75% - 1rem, var(--container-max, 15ch));
+  height: fit-content;
   text-align: center;
 
-  grid-template-areas: "title" "image" "description";
-  grid-template-rows: 0.5fr 2fr 1fr;
+  grid-template-areas: "title" "image" "description" "bottom";
+  grid-template-rows: 0.5fr 2fr 0.35fr 1fr ;
 
   background-color: rgb(194, 188, 179);
 
@@ -74,6 +75,10 @@ body {
     width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
+  }
+
+  .star_container {
+    grid-area: bottom;
   }
 }
 

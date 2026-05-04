@@ -2,38 +2,11 @@ import express from "express"
 import pool from "../config/db.js"
 import {body, param, validationResult } from "express-validator"
 import fs from "fs"
+import set_piece_data from "../config/junk_functions.js"
 
 const router = express.Router()
 
-function check_piece_img(piece_name) {
-    var image_url = "/images/noImage.jpg"
-    var image_string = "/images/pieces/" + piece_name + ".jpg"
 
-    if (fs.existsSync("./public"+image_string)){
-        image_url = image_string
-    }
-    return image_url
-}
-
-async function get_piece_rating(piece_id) {
-    var [ratings] = await pool.query(` 
-        SELECT * FROM rating
-        WHERE rating.piece_id = ?
-    `,[piece_id])
-
-    var rating_value = 0
-    var amount = ratings.length
-
-    ratings.forEach((rating) => {
-        rating_value += rating.rating
-    })
-
-    if (amount <= 0) {
-        amount = 1
-    }
-
-    return Math.round((rating_value/amount)*10)/10
-}
 
 router.get("/", async (req, res, next) => {
     try {
@@ -49,15 +22,7 @@ router.get("/", async (req, res, next) => {
 
 
         for (const piece of rows)  {
-            const index = rows.indexOf(piece)
-            const image_url = check_piece_img(piece.name)
-            rows[index]["image_url"] = image_url
-            const rating = await get_piece_rating(piece.id)
-            const rating_rounded = Math.round(rating)
-            rows[index]["rating"] = rating
-            rows[index]["rating_rounded"] = rating_rounded
-            console.log(rows[index])
-            
+            rows = await set_piece_data(piece,rows)
         }
 
         console.log(rows)
@@ -95,15 +60,17 @@ router.get("/:id",
         
         
         if (rows.length > 0) {
-            var piece = rows[0]
-
+            rows = await set_piece_data(rows[0],rows)
+            console.log(rows)
+            const piece = rows[0]
+            /*
             const final_rate = await get_piece_rating(pieceID)
             piece["rating"] = final_rate
 
-            var image_url = check_piece_img(piece.name)
+            var image_url = check_piece_img(piece.name)*/
 
             return res.render("junk/junk.njk",
-                {user: user, piece: piece , img: image_url}
+                {user: user, piece: piece}
             )
         }
         else {

@@ -1,6 +1,7 @@
 import express from "express"
 import pool from "../config/db.js"
 import fs from "fs"
+import set_piece_data from "../config/junk_functions.js"
 
 const router = express.Router()
 
@@ -26,15 +27,14 @@ router.get("/", async (req, res, next) => {
 
         var [rows] = await pool.query(` 
             SELECT * FROM piece
-            ORDER BY rating DESC
+            ORDER BY RAND()
+            LIMIT 3
             `)
         
-        rows.forEach((piece,index) => {
-            var image_url = check_piece_img(piece.name)
-            rows[index]["image_url"] = image_url
-        })
+        for (const piece of rows)  {
+            rows = await set_piece_data(piece,rows)
+        }
 
-        console.log(rows)
         res.render("index.njk",
             { title: "Junkgun", message: "let's rate some stuff", user: user, pieces: rows  }
         )

@@ -1,7 +1,7 @@
 <div class="star_container">
     {% set id_list = [1,2,3,4,5] %}
 
-    {% if functional and authenticated %}
+    {% if (functional) and (user.authenticated) %}
     <form action="/junk/{{piece.id}}" method="post">
         <input type="hidden" id="hidden_star" name="star_rating" value="0">
         {% for id in id_list %}

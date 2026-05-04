@@ -17,17 +17,20 @@
 
 
     background-color: gray;
+    padding: 1.25rem;
 }
 
 .description {
-    width: min(100%, var(--container-max, 60ch));
+    width: min(60%, var(--container-max, 60ch));
+    flex-grow: 1;
+    margin-block: 1rem;
 }
 
 .piece {
     display: flex;
     align-content: center;
     justify-content: center;
-    width: min(50%, var(--container-max, 20ch));
+    width: min(100%, var(--container-max, 20ch));
     aspect-ratio: 1;
     
     img {
