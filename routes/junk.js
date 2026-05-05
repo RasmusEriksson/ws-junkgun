@@ -63,11 +63,6 @@ router.get("/:id",
             rows = await set_piece_data(rows[0],rows,true)
             console.log(rows)
             const piece = rows[0]
-            /*
-            const final_rate = await get_piece_rating(pieceID)
-            piece["rating"] = final_rate
-
-            var image_url = check_piece_img(piece.name)*/
 
             return res.render("junk/junk.njk",
                 {user: user, piece: piece}
