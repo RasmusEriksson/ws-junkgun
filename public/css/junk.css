@@ -21,7 +21,7 @@
 }
 
 .description {
-    width: min(60%, var(--container-max, 60ch));
+    width: min(55%, var(--container-max, 60ch));
     flex-grow: 1;
     margin-block: 1rem;
 }
@@ -44,23 +44,49 @@
 
 
 .stats {
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+
+    height: fit-content;
+    margin-inline: auto;
     width: min(100%, var(--container-max, 60ch));
+}
+
+.stat_container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 1rem;
 }
 
 .stat {
     display: grid;
     grid-area: "icon value range rangeicon";
-    grid-template-columns: 0.5fr 2fr 0.5fr 0.5fr;
+    grid-template-columns: 0.5fr 1fr 0.5fr 0.5fr;
 
-    width: min(50%, var(--container-max, 35ch));
+    width: min(100%, var(--container-max, 25ch));
     height: fit-content;
 
     background-color: black;
     color: white;
 
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.15rem;
+    
+    * {
+        margin: 0;
+    }
+
     img {
+        
         width: 100%;
-        height: 100%;
+        aspect-ratio: 1;
         object-fit: cover;
     }
 }
@@ -72,6 +98,7 @@
 
 
 .star_container {
+    align-self: center;
     background-color: var(--mauve-shadow);
     outline-style: solid;
     outline-width: 0.25rem;

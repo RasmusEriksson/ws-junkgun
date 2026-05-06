@@ -1,5 +1,6 @@
 import pool from "../config/db.js"
 import fs from "fs"
+import db from '../config/db.js';
 
 
 
@@ -13,11 +14,13 @@ function check_piece_img(piece_name) {
     return image_url
 }
 
-async function get_piece_rating(piece_id) {
-    const [ratings] = await pool.query(` 
+function get_piece_rating(piece_id) {
+    const ratings = db.prepare(` 
         SELECT * FROM rating
         WHERE rating.piece_id = ?
-    `,[piece_id])
+    `).all(piece_id)
+    
+    console.log(ratings)
 
     var rating_value = 0
     var amount = ratings.length
@@ -33,22 +36,22 @@ async function get_piece_rating(piece_id) {
     return Math.round((rating_value/amount)*10)/10
 }
 
-async function get_piece_stats(piece_id) {
-    const [stats] = await pool.query(`
+function get_piece_stats(piece_id) {
+    const stats = db.prepare(`
         SELECT  stat_piece.value, stat_piece.con_range, stat.name
         FROM stat_piece
         JOIN stat ON stat_piece.stat_id = stat.id
         WHERE stat_piece.piece_id = ?
-        `,[piece_id])
+        `).all(piece_id)
     
     return stats
 }
 
-export default async function set_piece_data(piece,rows,get_stats = false) {
+export default function set_piece_data(piece,rows,get_stats = false) {
     
     const index = rows.indexOf(piece)
     const image_url = check_piece_img(piece.name)
-    const rating = await get_piece_rating(piece.id)
+    const rating = get_piece_rating(piece.id)
     const rating_rounded = Math.round(rating)
     
     rows[index]["image_url"] = image_url
@@ -56,7 +59,7 @@ export default async function set_piece_data(piece,rows,get_stats = false) {
     rows[index]["rating_rounded"] = rating_rounded
 
     if (get_stats) {
-        const stats = await get_piece_stats(piece.id)
+        const stats = get_piece_stats(piece.id)
         rows[index]["stats"] = stats
     }
     

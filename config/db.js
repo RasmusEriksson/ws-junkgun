@@ -71,17 +71,31 @@ db.exec(`
 
 
 //Thing for adding data V V V V V V
-// Skapa testdata, ta bort det här om du redan skapat data / inte behöver det
-const count = db.prepare('SELECT COUNT(*) as count FROM piece').get();
-if (count.count === 0) {
-    const insertPIECE = db.prepare(`
-        INSERT INTO piece (id, name, quality, description, weight, connections, rating, rating_amount) VALUES
-        (1, 'Handle', 1, 'The mechanism fits nicely in your hand, It looks like it can activate other pieces if connected to it.', 3, 3, 0, 0);
-    `)
+const add = false
+if (add) {
+    //ADD BASIC PIECE TO DATABASE
+    
+    /*const insertPIECE = db.prepare(`
+        INSERT OR IGNORE INTO piece (id, name, quality, description, weight, connections, rating, rating_amount) VALUES
+        (2, 'Pressure Cannon', 2, 'P.C for short, its mechanism allows it to pump out compact bubbles of pure air pressure which explode upon impact.', 2.5, 2, 0, 0);
+    `)*/
+
+    //db.prepare(`DELETE FROM piece WHERE rowid = 5;`).run()
+    //db.prepare(`VACUUM`).run()
+
+    //insertPIECE.run()
+    
+    //ADD RATING TO DATABASE
+    /*
     const insertRATING = db.prepare(`
         INSERT INTO rating (id, user_id, piece_id, rating) VALUES
         (1, 2, 1, 2);
     `)
+
+    insertRATING.run()*/
+
+    //ADD STATBASE TO DATABASE
+    /*
     const insertSTATBASE = db.prepare(`
         INSERT INTO stat (id, name) VALUES
         (1, 'dmg'),
@@ -97,13 +111,29 @@ if (count.count === 0) {
         (11, 'hold'),
         (12, 'no_dmg');
     `)
+
+    insertSTATBASE.run()*/
+
+    //ADD NEW PIECE STAT TO DATABASE
+    
+    /*
     const insertSTAT = db.prepare(`
-        INSERT INTO stat_piece (id, piece_id, stat_id, value, con_range) VALUES
-        (1, 1, 3, '1.0', '3');
+        INSERT OR IGNORE INTO stat_piece ( piece_id, stat_id, value, con_range) VALUES
+        ( 2, 1, '0.0', '0'),
+        ( 2, 3, '1.5', '0'),
+        ( 2, 6, '15.0', '0'),
+        ( 2, 12, 'no_dmg', '0');
     `)
+
+    insertSTAT.run()*/
+    
+    //ADD NEW USER TO DATABASE
+    /*
     const insertUSER = db.prepare(`
         INSERT INTO user (id, name, email, password_hash) VALUES
         (2, 'test', 'test', '$2b$10$JWPdbJN4eXWWxpX9Z6oV7.VZBN1HF5gcdWsGq7lo9PPvrDF.pfzLG');`);
+    
+    insertUSER.run()*/
 }
 
 export default db;

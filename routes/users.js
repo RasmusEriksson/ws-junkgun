@@ -2,6 +2,7 @@ import express, { json } from "express"
 import bcrypt from "bcrypt"
 import {body, param, validationResult} from "express-validator"
 import pool from "../config/db.js"
+import db from "../config/db.js"
 
 const router = express.Router()
 
@@ -28,12 +29,12 @@ router.post("/login",
             const username = req.body.username
             const password = req.body.password
 
-            const [rows] = await pool.query(
+            const rows = db.prepare(
             `   
                 SELECT * FROM user
                 WHERE user.name = ?
-            `, [username]
-            )
+            `,
+            ).all(username)
             const user = rows[0]
 
             if (!user){
@@ -85,11 +86,11 @@ router.post("/signin",
             const password = req.body.password
             const password_confirm = req.body.password_confirm
 
-            const [already_exists_rows] = await pool.query(
+            const already_exists_rows = db.prepare(
                 `
                 SELECT * FROM user
                 WHERE user.name = ? OR user.email = ?
-                `, [username,email])
+                `).all(username,email)
             
             if (already_exists_rows.length > 0){
                 return res.json({message:"Either your username or email is already taken!"})
@@ -99,10 +100,10 @@ router.post("/signin",
                 const saltRounds = 10
                 const hash = await bcrypt.hash(password,saltRounds)
 
-                await pool.query(
+                db.prepare(
                     `
                         INSERT INTO user (name, email, password_hash) VALUES (?,?,?)
-                    `,[username,email,hash])
+                    `).all(username,email,hash)
 
                 return res.redirect("/")
             }

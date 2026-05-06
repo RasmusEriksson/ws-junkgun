@@ -31,9 +31,11 @@ router.get("/", async (req, res, next) => {
             LIMIT 3
             `).all()
         
-        /*for (const piece of rows)  {
-            rows = await set_piece_data(piece,rows)
-        }*/
+        console.log(rows)
+        
+        for (const piece of rows)  {
+            rows = set_piece_data(piece,rows)
+        }
 
         res.render("index.njk",
             { title: "Junkgun", message: "let's rate some stuff", user: user, pieces: rows  }

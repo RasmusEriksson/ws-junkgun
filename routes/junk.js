@@ -3,26 +3,27 @@ import pool from "../config/db.js"
 import {body, param, validationResult } from "express-validator"
 import fs from "fs"
 import set_piece_data from "../config/junk_functions.js"
+import db from "../config/db.js"
 
 const router = express.Router()
 
 
 
-router.get("/", async (req, res, next) => {
+router.get("/", (req, res, next) => {
     try {
         var user = null
         if (req.session.authenticated) {
             user = req.session
         }
 
-        var [rows] = await pool.query(` 
+        var rows = db.prepare(` 
             SELECT * FROM piece
             ORDER BY rating DESC
-            `)
+            `).all()
 
 
         for (const piece of rows)  {
-            rows = await set_piece_data(piece,rows)
+            rows = set_piece_data(piece,rows)
         }
 
         console.log(rows)
@@ -39,7 +40,7 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:id", 
     param("id").isInt().withMessage("ID must be a whole integer!"),
-    async (req, res, next) => {
+    (req, res, next) => {
     try {
         const errors = validationResult(req)
         if (!errors.isEmpty()){
@@ -53,14 +54,14 @@ router.get("/:id",
 
         const pieceID = req.params.id
 
-        var [rows] = await pool.query(` 
+        var rows = db.prepare(` 
             SELECT * FROM piece
             WHERE piece.id = ?
-            `,[pieceID])
+            `).all(pieceID)
         
         
         if (rows.length > 0) {
-            rows = await set_piece_data(rows[0],rows,true)
+            rows = set_piece_data(rows[0],rows,true)
             console.log(rows)
             const piece = rows[0]
 
@@ -81,10 +82,10 @@ router.get("/:id",
 
 router.post("/:id",
     param("id").isInt().withMessage("ID must be a whole integer!"),
-    body("star_rating").isInt().withMessage("RATING NOT INT"),
+    body("star_rating").isInt().withMessage("RATING must be an integer"),
 
     
-    async (req,res,next) => {
+    (req,res,next) => {
         if (req.session.authenticated) {
             const errors = validationResult(req)
             if (!errors.isEmpty()){
@@ -99,38 +100,30 @@ router.post("/:id",
 
             //Check if rating already exists if logged in
             
-            var [rows] = await pool.query(`
+            var rows = db.prepare(`
                     SELECT rating.id, piece.rating, piece.rating_amount FROM rating
                     INNER JOIN piece ON rating.piece_id = piece.id
                     WHERE rating.user_id = ? AND rating.piece_id = ?
-                `,[user_id, piece_id])
+                `).all(user_id, piece_id)
             
             if (rows.length > 0) {
-                await pool.query(`
+                db.prepare(`
                         UPDATE rating
                         SET rating = ?
                         WHERE user_id = ? AND piece_id = ?
-                    `,[star_rating, user_id, piece_id])
+                    `).run(star_rating, user_id, piece_id)
             }
             else {
-                await pool.query(`
+                db.prepare(`
                         INSERT INTO rating (user_id, piece_id, rating) VALUES(?,?,?) 
-                    `,[user_id, piece_id, star_rating])
+                    `).run(user_id, piece_id, star_rating)
             }
         }
         else {
             throw new Error("You need to be authenticated to post your rating")
         }
-        return res.redirect("../junk/"+String(req.params.id))
+        return res.redirect(req.get('referer'))
 })
 
-async function exists (path) {  
-  try {
-    await fs.access(path)
-    return true
-  } catch {
-    return false
-  }
-}
 
 export default router
