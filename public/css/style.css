@@ -1,16 +1,19 @@
 @import url(./reset.css);
 @import url(./junk.css);
+@import url(./main_page.css);
 
 :root {
+    --clear-text: rgb(246, 222, 181);
+    --mellow-text:rgb(255, 217, 152);
     --lime-cream: #edff71ff;
-    --khaki-beige: #baa898ff;
+    --khaki-beige: rgb(221, 184, 151);
     --mauve-shadow: #684756ff;
-    --dark-slate-grey: #204e4aff;
+    --dark-slate-grey: rgb(73, 86, 60);
     --granite: #3b5249ff;
 }
 
-
 body {
+  margin: 0;
   font-family: sans-serif;
   font-size: 1.2rem;
 }
@@ -18,6 +21,12 @@ body {
 .wrapper {
   width: min(100% - 3rem, var(--container-max, 60ch));
   margin-inline: auto;
+
+  color: var(--mellow-text);
+
+  h2 {
+      color: var(--clear-text);
+  }
 }
 
 .region {
@@ -26,12 +35,21 @@ body {
 }
 
 .header{
+    
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    background-color: var(--khaki-beige);
+    background: radial-gradient(circle,rgba(255, 244, 94, 0.25) 0%, rgba(252, 70, 70, 0) 100%);
+    background-color: var(--dark-slate-grey);
+    
     width: 100%;
+
+    outline-style: solid;
+    outline-width: 0.25rem;
+    outline-color: var(--khaki-beige);
+
+    
 
     flex-grow: 1;
     gap: 1rem;
@@ -42,15 +60,23 @@ body {
         width: min(90% - 1rem, var(--container-max, 30ch));
 
     }
+
+
+    
 }
 
 .footer {
+  background: radial-gradient(circle,rgba(57, 41, 16, 0.35) 0%, rgba(252, 70, 70, 0) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background-color: var(--khaki-beige);
+  background-color: var(--dark-slate-grey);
   width: 100%;
+
+  outline-style: solid;
+  outline-width: 0.25rem;
+  outline-color: var(--khaki-beige);
 
   flex-grow: 1;
   gap: 1rem;
@@ -60,14 +86,23 @@ body {
 
 .card {
   display: grid;
-  width: min(75% - 1rem, var(--container-max, 15ch));
+  width: min(50% - 1rem, var(--container-max, 15ch));
   height: fit-content;
   text-align: center;
 
   grid-template-areas: "title" "image" "description" "bottom";
   grid-template-rows: 0.5fr 2fr 0.35fr 1fr ;
 
-  background-color: rgb(194, 188, 179);
+  background-color: rgb(111, 67, 47);
+  color: var(--clear-text);
+  border-style: solid;
+  border-color: var(--khaki-beige);
+  border-radius: 0.15rem;
+
+  > * {
+    margin-block: auto;
+    padding-block: 0.25rem;
+  }
 
   img {
     justify-self: center;
@@ -86,4 +121,5 @@ body {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  justify-content: center;
 }

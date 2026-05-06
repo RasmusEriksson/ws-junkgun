@@ -1,0 +1,12 @@
+.hero {
+    height: fit-content;
+    width: 100%;
+
+    background: linear-gradient(90deg,rgba(92, 70, 58, 0.24) 0%, rgba(84, 36, 0, 0.47) 28%, rgba(84, 36, 0, 0.48) 72%, rgba(92, 70, 58, 0) 100%),
+    url(/images/junkhero.jpg);
+    background-size: cover;
+    margin: 0;
+    display: flex;
+
+    text-align: center;
+}

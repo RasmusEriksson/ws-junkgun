@@ -1,6 +1,6 @@
 :root {
     --lime-cream: #edff71ff;
-    --khaki-beige: #baa898ff;
+    --khaki-beige: rgb(183, 148, 117);
     --mauve-shadow: #684756ff;
     --dark-slate-grey: #204e4aff;
     --granite: #3b5249ff;
@@ -21,7 +21,7 @@
 }
 
 .description {
-    width: min(55%, var(--container-max, 60ch));
+    width: min(65%, var(--container-max, 60ch));
     flex-grow: 1;
     margin-block: 1rem;
 }
@@ -101,10 +101,9 @@
     align-self: center;
     background-color: var(--mauve-shadow);
     outline-style: solid;
-    outline-width: 0.25rem;
     outline-color: var(--khaki-beige);
 
-    padding: 1rem;
+    padding: 0.25rem;
     
     width: min(100%, var(--container-max, 50ch));
     height: min(100%, var(--container-max, 20ch));;
@@ -132,6 +131,7 @@
         display: grid;
         grid-template-columns: repeat(5,1fr);
         grid-template-rows: 1fr;
+        padding: 0;
 
         gap: 0.15rem;
 
@@ -157,14 +157,21 @@
 }
 
 .star_card {
+    margin: 0;
     width: min(100%, var(--container-max, 4ch));
     aspect-ratio: 1;
     background-color: rgba(240, 248, 255, 0);
     border-style: none;
+    padding: 20Srem;
+    
+    
 
     * {
+
+        margin: 0;
         width: 100%;
         height: 100%;
+        aspect-ratio: 1;
         object-fit: cover;
         filter: brightness(85%) saturate(100%) invert(0%) sepia(13%) saturate(1276%) hue-rotate(350deg) brightness(106%) contrast(105%);
     }

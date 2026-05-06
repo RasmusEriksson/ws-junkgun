@@ -2,20 +2,20 @@
 
 {% block content %}
 {% include "components/header.njk" %}
-<main class="wrapper">
-    <p>Welcome to the junkgun ranking website, this is made as a school project to get better att using databases and handling user input for a webbserver</p>
-    <a href="/users/signin">SIGN IN TO THE WEBSITE NOW!</a>
 
-    {% if user %}
-        <p>{{user.username}}</p>
-    {% endif %}
-    
-    <ul class="cardList">
+<div class="hero">
+    <div class="wrapper">
+        <p>Welcome to the junkgun ranking website, this is made as a school project to get better att using databases and handling user input for a webbserver</p>
+        <a href="/users">LOG IN NOW!</a>
+
+        <h2>Here are some random pieces!</h2>
+        <ul class="cardList">
         {% for piece in pieces %}
             {% include "components/card.njk" %}
         {% endfor %}
-    </ul>
-    <p>"I LOVE JUNKGUN!"- johnjunk probably idk I haven't played the game</p>
-</main>
+        </ul>
+    </div>
+</div>
+
 {% include "components/footer.njk" %}
 {% endblock %}

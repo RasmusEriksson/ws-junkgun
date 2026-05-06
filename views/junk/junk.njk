@@ -7,9 +7,7 @@
             <h1> DESCRIPTION </h1>
             <p>{{piece.description}}</p>
         </div>
-        <div class="piece">
-            {% include "components/card.njk" %}
-        </div>
+        {% include "components/card.njk" %}
         <div class="stats">
             <div class="stat_container">
                 {% for stat in piece.stats%}
