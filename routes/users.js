@@ -10,6 +10,11 @@ const router = express.Router()
 
 // ALL OF THE ROUTES FOR LOGGING IN
 
+
+router.get("/",(req,res) => {
+    res.render("users/users.njk")
+})
+
 router.get("/login",(req,res) => {
     res.render("users/login.njk")
 })
@@ -103,7 +108,7 @@ router.post("/signin",
                 db.prepare(
                     `
                         INSERT INTO user (name, email, password_hash) VALUES (?,?,?)
-                    `).all(username,email,hash)
+                    `).run(username,email,hash)
 
                 return res.redirect("/")
             }

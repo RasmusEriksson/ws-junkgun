@@ -1,6 +1,7 @@
 @import url(./reset.css);
 @import url(./junk.css);
 @import url(./main_page.css);
+@import url(./user.css);
 
 :root {
     --clear-text: rgb(246, 222, 181);
