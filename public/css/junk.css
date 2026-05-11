@@ -1,9 +1,15 @@
 :root {
+    --clear-text: rgb(246, 222, 181);
+    --mellow-text:rgb(255, 217, 152);
     --lime-cream: #edff71ff;
-    --khaki-beige: rgb(183, 148, 117);
+    --khaki-beige: rgb(221, 184, 151);
     --mauve-shadow: #684756ff;
-    --dark-slate-grey: #204e4aff;
+    --dark-slate-grey: rgb(73, 86, 60);
     --granite: #3b5249ff;
+    --1-quality: rgb(233, 233, 233);
+    --2-quality: rgb(218, 218, 237);
+    --3-quality: rgb(249, 209, 255);
+    --4-quality: rgb(255, 234, 183);
 }
 
 .information {
@@ -14,9 +20,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
-
-    background-color: gray;
     padding: 1.25rem;
 }
 
@@ -45,6 +48,7 @@
 
 .stats {
     padding: 1rem;
+    gap: 1rem;
 
     display: flex;
     flex-direction: column;
@@ -60,8 +64,16 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.25rem;
     padding: 1rem;
+
+    gap: 0.5rem;
+
+    height: fit-content;
+
+    background-color: var(--mauve-shadow);
+    outline-style: solid;
+    outline-color: var(--khaki-beige);
+
 }
 
 .stat {
@@ -72,8 +84,13 @@
     width: min(100%, var(--container-max, 25ch));
     height: fit-content;
 
-    background-color: black;
+    border-radius: 0.5rem;
+
+    background-color: rgb(53, 28, 39);
     color: white;
+    outline-style: solid;
+    outline-width: 0.05rem;
+
 
     align-items: center;
     gap: 0.25rem;
@@ -98,6 +115,13 @@
 
 
 .star_container {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: var(--mellow-text);
+
     align-self: center;
     background-color: var(--mauve-shadow);
     outline-style: solid;
@@ -128,15 +152,20 @@
 
     .star_showcase {
         height: 100%;
+        width: 100%;
         display: grid;
         grid-template-columns: repeat(5,1fr);
         grid-template-rows: 1fr;
-        padding: 0;
+        padding: 0.15rem;
 
         gap: 0.15rem;
 
         justify-items: center;
         align-items: center;
+    }
+
+    p {
+        margin: 0;
     }
     
 }
@@ -162,10 +191,7 @@
     aspect-ratio: 1;
     background-color: rgba(240, 248, 255, 0);
     border-style: none;
-    padding: 20Srem;
     
-    
-
     * {
 
         margin: 0;
@@ -200,4 +226,80 @@
     .full {
         display: none;
     }
+}
+
+.allpiece {
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    background: linear-gradient(0deg,rgba(133, 102, 57, 1) 0%, rgba(66, 58, 46, 1) 100%);
+    height: fit-content;
+
+    h1 {
+        margin: 2rem;
+        color: var(--clear-text);
+    }
+}
+
+.quality_list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2.5rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    h2 {
+        margin-inline: auto;
+        color: var(--clear-text);
+    }
+
+    
+}
+
+.quality {
+    width: 100%;
+    height: fit-content;
+
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2rem;
+    
+    border-style: solid;
+}
+
+.background {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(0deg,rgba(120, 120, 120, 0) 0%, rgba(255, 255, 255, 0.5) 100%),
+    url(/images/backgroundframe.png);
+}
+
+.q1 {
+        backdrop-filter: brightness(20%) saturate(50%) invert(0%) sepia(1%) saturate(2000%) hue-rotate(203deg) brightness(124%) contrast(74%);
+        border-color: var(--1-quality);
+        color: var(--1-quality);
+}
+.q2 {
+        border-color: var(--2-quality);
+        color: var(--2-quality);
+        backdrop-filter: brightness(20%) saturate(50%) invert(0%) sepia(14%) saturate(300%) hue-rotate(170deg) brightness(124%) contrast(80%);
+}  
+.q3 {   
+        border-color: var(--3-quality);
+        color: var(--3-quality);
+        backdrop-filter: brightness(20%) saturate(50%) invert(0%) sepia(30%) saturate(400%) hue-rotate(282deg) brightness(102%) contrast(106%);
+}
+.q4 {   
+        border-color: var(--4-quality);
+        color: var(--4-quality);
+        backdrop-filter: brightness(30%) saturate(50%) invert(0%) sepia(12%) saturate(500%) hue-rotate(330deg) brightness(104%) contrast(109%);
 }

@@ -1,3 +1,17 @@
 <div class="header">
     <img src="/images/Junk_gun_menu_logo.png" alt="junk gun logo">
+    <div class="links">
+        <a href="/">Home</a>
+        <a href="/junk">Pieces</a>
+
+        {% if (user.authenticated) or true %}
+        <div class="pfp">  
+            <img src="/images/icons/pfpicon.png" alt="profile icon">
+            <p class="important">"test"</p>
+        </div>
+        {% else %}
+        {{user.username}}
+        <a class="important" href="/users">LOG IN!</a>
+        {% endif %}
+    </div>
 </div>

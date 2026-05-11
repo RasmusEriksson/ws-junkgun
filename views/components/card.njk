@@ -1,9 +1,11 @@
-<div class="card">
-    <a href="/junk/{{piece.id}}">{{piece.name}}</a>
-    <img src="{{piece.image_url}}" alt="{{piece.name}}">
-    {% if piece.connections %}
-        <p>{{piece.rating}}/5</p>
-    {% endif %}
-    {% include "components/starRating.njk" %}
-    
+<div class="card_background">
+    <div class="card q{{piece.quality}}">
+        <a href="/junk/{{piece.id}}">{{piece.name}}</a>
+        <img src="{{piece.image_url}}" alt="{{piece.name}}">
+        {% if piece.connections %}
+            <p>{{piece.rating}}/5</p>
+        {% endif %}
+        {% include "components/starRating.njk" %}
+        
+    </div>
 </div>

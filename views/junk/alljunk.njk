@@ -2,14 +2,52 @@
 
 {% block content %}
 {% include "components/header.njk" %}
-<main class="wrapper">
+<main class="allpiece">
     <h1>Here are allllll pieces</h1>
 
-    <ul class="cardList">
+    <ul class="quality_list">
+        <h2>Poor Quality</h2>
+        <div class="background"> 
+        <div class="quality q1">
         {% for piece in pieces %}
-            {% include "components/card.njk" %}
+            {% if piece.quality == 1 %}
+                {% include "components/card.njk" %}
+            {% endif %}
         {% endfor %}
+        </div>
+        </div>
+        <h2>Regular Quality</h2>
+        <div class="background"> 
+        <div class="quality q2">
+        {% for piece in pieces %}
+            {% if piece.quality == 2 %}
+                {% include "components/card.njk" %}
+            {% endif %}
+        {% endfor %}
+        </div>
+        </div>
+        <h2>Special Quality</h2>
+        <div class="background">
+        <div class="quality q3">
+        {% for piece in pieces %}
+            {% if piece.quality == 3 %}
+                {% include "components/card.njk" %}
+            {% endif %}
+        {% endfor %}
+        </div>
+        </div>
+        <h2>Prestine Quality</h2>
+        <div class="background"> 
+        <div class="quality q4">
+        {% for piece in pieces %}
+            {% if piece.quality == 4 %}
+                {% include "components/card.njk" %}
+            {% endif %}
+        {% endfor %}
+        </div>
+        </div>
     </ul>
+    
 </main>
 {% include "components/footer.njk" %}
 {% endblock %}

@@ -25,6 +25,7 @@ body {
 
   color: var(--mellow-text);
 
+
   h2 {
       color: var(--clear-text);
   }
@@ -46,11 +47,11 @@ body {
     
     width: 100%;
 
-    outline-style: solid;
-    outline-width: 0.25rem;
-    outline-color: var(--khaki-beige);
+     border-style: solid;
+    border-width: 0.25rem;
+    border-color: var(--khaki-beige);
 
-    
+    z-index: 2;
 
     flex-grow: 1;
     gap: 1rem;
@@ -60,6 +61,52 @@ body {
         margin-top: 0;
         width: min(90% - 1rem, var(--container-max, 30ch));
 
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: var(--mellow-text);
+      text-align: center;
+
+      > * {
+        margin-block: auto;
+      }
+
+      a {
+        text-decoration: none;
+      }
+      a:hover {
+        color: white;
+      } 
+      
+      .important {
+        color: var(--clear-text);
+        margin-block: auto;
+      }
+
+      .pfp {
+        height: fit-content;
+        display: flex;
+        flex-wrap: wrap;
+        
+        align-content: center;
+        justify-content: center;
+        
+
+        margin: 0;
+        gap: 0.5rem;
+
+        img {
+          justify-self: center;
+          align-self: center;
+          width: 3.5ch;
+          aspect-ratio: 1;
+          object-fit: cover;
+        }
+      }
+      
     }
 
 
@@ -74,30 +121,32 @@ body {
   padding: 1rem;
   background-color: var(--dark-slate-grey);
   width: 100%;
+  
 
-  outline-style: solid;
-  outline-width: 0.25rem;
-  outline-color: var(--khaki-beige);
+  border-style: solid;
+  border-width: 0.25rem;
+  border-color: var(--khaki-beige);
 
   flex-grow: 1;
   gap: 1rem;
   margin: 0rem;
 }
 
+.card_background {
+  width: min(50% - 1rem, var(--container-max, 15ch));
+  background-color: rgb(179, 179, 179);
+}
 
 .card {
+  width: 100%;
   display: grid;
-  width: min(50% - 1rem, var(--container-max, 15ch));
   height: fit-content;
   text-align: center;
 
   grid-template-areas: "title" "image" "description" "bottom";
   grid-template-rows: 0.5fr 2fr 0.35fr 1fr ;
 
-  background-color: rgb(111, 67, 47);
-  color: var(--clear-text);
   border-style: solid;
-  border-color: var(--khaki-beige);
   border-radius: 0.15rem;
 
   > * {
