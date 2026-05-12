@@ -28,10 +28,9 @@ router.get("/", async (req, res, next) => {
 
         var rows = db.prepare(` 
             SELECT * FROM piece
+            ORDER BY random()
             LIMIT 3
             `).all()
-        
-        console.log(rows)
         
         for (const piece of rows)  {
             rows = set_piece_data(piece,rows)

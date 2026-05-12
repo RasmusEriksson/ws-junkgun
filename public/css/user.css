@@ -6,6 +6,7 @@
     --mauve-shadow: #684756ff;
     --dark-slate-grey: rgb(73, 86, 60);
     --granite: #3b5249ff;
+    --dark-shadow:rgb(61, 31, 45);
 }
 
 .user_body {
@@ -42,17 +43,40 @@
     outline-style: solid;
     outline-color: var(--khaki-beige);
 
-    a {
-        background-color: rgb(61, 31, 45);
+    form {
+        display: flex;
+        flex-wrap: wrap;
 
-        text-decoration: none;
-        text-align: center;
-        color: var(--clear-text);
+        width: 100%;
 
-        padding: 1rem;
-        
+        justify-content: center;
+        align-items: center;
 
-        width: min(80%, var(--container-max, 20ch));
-        align-self: center;
+        gap: 0.5rem;
+
+        background-color: rgb(148, 76, 110);
+        margin: auto;
+        padding: 0.5rem;
+        padding-block: 2rem;
+
+        input {
+            width: min(100%, var(--container-max, 20ch));
+            background-color: var(--clear-text);
+        }
+
     }
+}
+
+.important_button {
+    background-color: var(--dark-shadow);
+
+    text-decoration: none;
+    text-align: center;
+    color: var(--clear-text);
+
+    padding: 1rem;
+    
+
+    width: min(80%, var(--container-max, 20ch));
+    align-self: center;
 }

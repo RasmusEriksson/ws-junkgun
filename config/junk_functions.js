@@ -24,6 +24,7 @@ function get_piece_rating(piece_id) {
 
     var rating_value = 0
     var amount = ratings.length
+    var real_amount = ratings.length
 
     ratings.forEach((rating) => {
         rating_value += rating.rating
@@ -33,7 +34,7 @@ function get_piece_rating(piece_id) {
         amount = 1
     }
     
-    return Math.round((rating_value/amount)*10)/10
+    return [Math.round((rating_value/amount)*10)/10, real_amount]
 }
 
 function get_piece_stats(piece_id) {
@@ -51,12 +52,19 @@ export default function set_piece_data(piece,rows,get_stats = false) {
     
     const index = rows.indexOf(piece)
     const image_url = check_piece_img(piece.name)
-    const rating = get_piece_rating(piece.id)
+    const rating_info = get_piece_rating(piece.id)
+
+    const rating = rating_info[0]
+    const rating_amount = rating_info[1]
+
     const rating_rounded = Math.round(rating)
+
+
     
     rows[index]["image_url"] = image_url
     rows[index]["rating"] = rating
     rows[index]["rating_rounded"] = rating_rounded
+    rows[index]["rating_amount"] = rating_amount
 
     if (get_stats) {
         const stats = get_piece_stats(piece.id)

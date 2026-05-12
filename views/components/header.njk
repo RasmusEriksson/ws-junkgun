@@ -4,13 +4,12 @@
         <a href="/">Home</a>
         <a href="/junk">Pieces</a>
 
-        {% if (user.authenticated) or true %}
+        {% if (user.authenticated)%}
         <div class="pfp">  
             <img src="/images/icons/pfpicon.png" alt="profile icon">
-            <p class="important">"test"</p>
+            <a href="/users" class="important">{{user.username}}</a>
         </div>
         {% else %}
-        {{user.username}}
         <a class="important" href="/users">LOG IN!</a>
         {% endif %}
     </div>

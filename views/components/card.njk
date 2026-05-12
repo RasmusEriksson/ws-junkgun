@@ -3,7 +3,7 @@
         <a href="/junk/{{piece.id}}">{{piece.name}}</a>
         <img src="{{piece.image_url}}" alt="{{piece.name}}">
         {% if piece.connections %}
-            <p>{{piece.rating}}/5</p>
+            <p>{{piece.rating}}/5 {% if piece.rating_amount > 0 %}({{piece.rating_amount}}){% endif %}</p>
         {% endif %}
         {% include "components/starRating.njk" %}
         

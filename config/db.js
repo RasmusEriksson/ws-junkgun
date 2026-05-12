@@ -77,13 +77,17 @@ if (add) {
     
     /*const insertPIECE = db.prepare(`
         INSERT OR IGNORE INTO piece (id, name, quality, description, weight, connections, rating, rating_amount) VALUES
-        (2, 'Pressure Cannon', 2, 'P.C for short, its mechanism allows it to pump out compact bubbles of pure air pressure which explode upon impact.', 2.5, 2, 0, 0);
-    `)*/
+        (3, 'Skateboard', 3, 'This is SICK AS FRICK hoooolyyyyy dude', 3.0, 3, 0, 0),
+        (4, 'Stupid', 4, 'An uncontrollable sensation of RAGE and HATRED overcomes you, your circuits start overheating from the immense WRATH this THING gives you. Probably the worst thing you’ve ever seen, at least that’s what your sensors tell you.', 5.0, 100, 0, 0),
+        (5, 'Darter', 1, 'It resembles a poorly carved wooden skull of a long since gone animal, it appears to be made by something with dexterous hands.', 4.0, 2, 0, 0),
+        (6, 'Fish Tail', 2, 'It’s been in the pile for so long that mechanical worms have eaten out everything remotely edible from the spine, all that remains are the corrosive leftovers', 2.0, 0, 0, 0),
+        (7, 'Banaba', 1, 'The outer shell has somehow hardened to be like stone, you can hear the old rotten inside move around within it.', 1.0, 3, 0, 0);
+    `)
 
     //db.prepare(`DELETE FROM piece WHERE rowid = 5;`).run()
     //db.prepare(`VACUUM`).run()
 
-    //insertPIECE.run()
+    insertPIECE.run()*/
     
     //ADD RATING TO DATABASE
     /*
@@ -119,10 +123,14 @@ if (add) {
     /*
     const insertSTAT = db.prepare(`
         INSERT OR IGNORE INTO stat_piece ( piece_id, stat_id, value, con_range) VALUES
-        ( 2, 1, '0.0', '0'),
-        ( 2, 3, '1.5', '0'),
-        ( 2, 6, '15.0', '0'),
-        ( 2, 12, 'no_dmg', '0');
+        ( 3, 2, '0.25', '2'),
+        ( 3, 9, '4.0', '0'),
+        ( 4, 8, '8', '2'),
+        ( 5, 1, '1', '0'),
+        ( 5, 3, '1.0', '0'),
+        ( 5, 8, '2', '0'),
+        ( 6, 8, '4', '1'),
+        ( 7, 7, '10', '0');
     `)
 
     insertSTAT.run()*/

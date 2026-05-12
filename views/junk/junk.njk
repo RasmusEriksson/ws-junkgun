@@ -2,24 +2,33 @@
 
 {% block content %}
 <main>
-    <div class="background">
-        <div class="region q{{piece.quality}}">
-            <div class="information ">
-                <div class="description ">
-                    <h1> DESCRIPTION </h1>
-                    <p>{{piece.description}}</p>
+    <div class="junk_background">
+        <div class="junk_region">
+            <div class="background">
+                <div class="region q{{piece.quality}}">
+                    <div class="information ">
+                        <div class="description ">
+                            <h1> DESCRIPTION </h1>
+                            <p>{{piece.description}}</p>
+                        </div>
+                        {% include "components/card.njk" %}
+                        <div class="stats">
+                            <h2>Stats</h2>
+                            <div class="stat_basic">
+                                <p>weight : {{piece.weight}}kg</p>
+                                <p>connection limit : {{piece.connections}}</p>
+                            </div>
+                            <div class="stat_container">
+                                {% for stat in piece.stats%}
+                                    {% include "components/stat.njk" %}
+                                {% endfor %}
+                            </div>
+                            {% set functional = true %}
+                            {% include "components/starRating.njk" %}
+                        </div>
+                    </div>  
                 </div>
-                {% include "components/card.njk" %}
-                <div class="stats">
-                    <div class="stat_container">
-                        {% for stat in piece.stats%}
-                            {% include "components/stat.njk" %}
-                        {% endfor %}
-                    </div>
-                    {% set functional = true %}
-                    {% include "components/starRating.njk" %}
-                </div>
-            </div>  
+            </div>
         </div>
     </div>
 </main>
