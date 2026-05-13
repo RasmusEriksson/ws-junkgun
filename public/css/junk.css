@@ -7,7 +7,7 @@
     --dark-slate-grey: rgb(73, 86, 60);
     --granite: #3b5249ff;
     --1-quality: rgb(233, 233, 233);
-    --2-quality: rgb(218, 218, 237);
+    --2-quality: rgb(220, 237, 255);
     --3-quality: rgb(249, 209, 255);
     --4-quality: rgb(255, 234, 183);
 }
@@ -112,7 +112,7 @@
     grid-area: "icon value range rangeicon";
     grid-template-columns: 0.5fr 1fr 0.5fr 0.5fr;
 
-    width: min(100%, var(--container-max, 25ch));
+    width: min(100%, var(--container-max, 17rem));
     height: fit-content;
 
     border-radius: 0.5rem;
@@ -126,6 +126,9 @@
     align-items: center;
     gap: 0.25rem;
     padding: 0.15rem;
+
+    font-size: medium;
+    
     
     * {
         margin: 0;
@@ -133,7 +136,8 @@
 
     img {
         
-        width: 100%;
+        width: min(100%, var(--container-max, 5ch));
+        margin: 0.25rem;
         aspect-ratio: 1;
         object-fit: cover;
     }
@@ -324,7 +328,7 @@
 .q2 {
         border-color: var(--2-quality);
         color: var(--2-quality);
-        backdrop-filter: brightness(20%) saturate(50%) invert(0%) sepia(14%) saturate(300%) hue-rotate(170deg) brightness(124%) contrast(80%);
+        backdrop-filter: brightness(20%) saturate(50%) invert(0%) sepia(14%) saturate(450%) hue-rotate(170deg) brightness(90%) contrast(80%);
 }  
 .q3 {   
         border-color: var(--3-quality);

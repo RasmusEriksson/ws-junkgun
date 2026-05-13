@@ -71,37 +71,40 @@ db.exec(`
 
 
 //Thing for adding data V V V V V V
-const add = false
+const add = true
 if (add) {
     //ADD BASIC PIECE TO DATABASE
+
+    db.prepare(`DELETE FROM piece`).run()
+    db.prepare(`VACUUM`).run()
     
     const insertPIECE = db.prepare(`
         INSERT OR IGNORE INTO piece (id, name, quality, description, weight, connections, rating, rating_amount) VALUES
-        (1, 'Handle', 1, 'description', 3.0, 3, 0, 0),
-        (2, 'Pressure Cannon', 2, 'description', 2.5, 2, 0, 0),
+        (1, 'Handle', 1, 'The mechanism fits nicely in your hand, It looks like it can activate other pieces if connected to it.', 3.0, 3, 0, 0),
+        (2, 'Pressure Cannon', 2, 'P.C for short, its mechanism allows it to pump out compact bubbles of pure air pressure which explode upon impact.', 2.5, 2, 0, 0),
         (3, 'Skateboard', 3, 'This is SICK AS FRICK hoooolyyyyy dude', 3.0, 3, 0, 0),
         (4, 'Stupid', 4, 'An uncontrollable sensation of RAGE and HATRED overcomes you, your circuits start overheating from the immense WRATH this THING gives you. Probably the worst thing you’ve ever seen, at least that’s what your sensors tell you.', 5.0, 100, 0, 0),
         (5, 'Darter', 1, 'It resembles a poorly carved wooden skull of a long since gone animal, it appears to be made by something with dexterous hands.', 4.0, 2, 0, 0),
         (6, 'Fish Tail', 2, 'It’s been in the pile for so long that mechanical worms have eaten out everything remotely edible from the spine, all that remains are the corrosive leftovers', 2.0, 0, 0, 0),
         (7, 'Banaba', 1, 'The outer shell has somehow hardened to be like stone, you can hear the old rotten inside move around within it.', 1.0, 3, 0, 0),
-        (8, 'Conditioner', 1, 'description', 2.5, 3, 0, 0),
-        (9, 'Pipe', 1, 'description', 1.0, 2, 0, 0),
-        (10, 'Box', 1, 'description', 1.5, 4, 0, 0),
-        (11, 'Grilled Cheese', 2, 'description', 3.0, 0, 0, 0),
-        (12, 'Quickie', 2, 'description', 5.0, 1, 0, 0),
-        (13, 'Shrew', 3, 'description', 3.0, 2, 0, 0),
-        (14, 'Welded Barrel', 2, 'description', 4.0, 2, 0, 0),
-        (15, 'Bad Flask', 3, 'description', 5.0, 2, 0, 0),
-        (16, 'The Slug', 3, 'description', 4.0, 0, 0, 0),
-        (17, 'Battery', 1, 'description', 2.0, 2, 0, 0),
-        (18, 'Can of Rage', 2, 'description', 3.0, 3, 0, 0),
-        (19, 'Chunk', 1, 'description', 2.5, 6, 0, 0),
-        (20, 'Donut', 2, 'description', 2.5, 3, 0, 0),
-        (21, 'Ube Juice', 1, 'description', 2.5, 2, 0, 0),
-        (22, 'Brick', 1, 'description', 3.0, 3, 0, 0),
-        (23, 'Stone Fist', 3, 'description', 5.0, 5, 0, 0),
-        (24, 'Mini Cannon', 1, 'description', 4.0, 1, 0, 0),
-        (25, 'Big Nail', 1, 'description', 3.0, 0, 0, 0);
+        (8, 'Conditioner', 1, 'It’s still cold somehow despite not working, it appears to be good to keep mechanisms running smoothly.', 2.5, 3, 0, 0),
+        (9, 'Pipe', 1, 'It’s a pipe, what more do you need to know?', 1.0, 2, 0, 0),
+        (10, 'Box', 1, 'Big, clunky and light in weight. Kind of like a balloon, but not similar to it at all.', 1.5, 4, 0, 0),
+        (11, 'Grilled Cheese', 2, 'Incredibly stale yet somehow very greasy.', 3.0, 0, 0, 0),
+        (12, 'Quickie', 2, 'More fragile and heavy than the alternatives but comes with an automatic firing system making it both quick and convenient to use', 5.0, 1, 0, 0),
+        (13, 'Shrew', 3, 'It appears to be a plush with highly corrosive stuffing, you assume it’s because you’re not supposed to touch it, but you want to do it anyway.', 3.0, 2, 0, 0),
+        (14, 'Welded Barrel', 2, 'Sturdy and heavy, it’s manufactured well to have lasted this long and still be of this quality', 4.0, 2, 0, 0),
+        (15, 'Bad Flask', 3, 'The liquid inside is very thick and sensitive, you feel like the slightest spark could explode the entire thing.', 5.0, 2, 0, 0),
+        (16, 'The Slug', 3, 'The oogly googly, glub glub glub gooo', 4.0, 0, 0, 0),
+        (17, 'Battery', 1, 'Still juiced up, it’s quite big and heavy however.', 2.0, 2, 0, 0),
+        (18, 'Can of Rage', 2, 'I can’t believe they have it, the substance of anger in a can, canned rage. Remarkable.', 3.0, 3, 0, 0),
+        (19, 'Chunk', 1, 'It looks like it’s a mismatch of folded metal platings and dried organic matter, it must’ve been compressed under the trash piles for decades.', 2.5, 6, 0, 0),
+        (20, 'Donut', 2, 'Used to be full of calories, still nutritious in a bad way anyhow.', 2.5, 3, 0, 0),
+        (21, 'Ube Juice', 1, 'You don’t know what an Ube is, but you don’t know why anybody would make it into a juice, at least it looks pretty.', 2.5, 2, 0, 0),
+        (22, 'Brick', 1, 'Dense but light, excellent for throwing with the intent to kill', 3.0, 3, 0, 0),
+        (23, 'Stone Fist', 3, 'It appears to be a remnant of an old statue, it’s incredibly heavy but can definitely pack a punch', 5.0, 5, 0, 0),
+        (24, 'Mini Cannon', 1, 'A simple mechanism made from pipes and gunpowder, it’s a marvel that it works.', 4.0, 1, 0, 0),
+        (25, 'Big Nail', 1, 'A nail that shoots smaller nails… I wonder who had that bright idea.', 3.0, 0, 0, 0);
     `)
 
     //db.prepare(`DELETE FROM piece WHERE rowid = 5;`).run()
@@ -117,6 +120,9 @@ if (add) {
     `)
 
     insertRATING.run()*/
+
+    db.prepare(`DELETE FROM stat`).run()
+    db.prepare(`VACUUM`).run()
 
     //ADD STATBASE TO DATABASE
     const insertSTATBASE = db.prepare(`
@@ -139,6 +145,9 @@ if (add) {
 
     //ADD NEW PIECE STAT TO DATABASE
     
+    db.prepare(`DELETE FROM stat_piece`).run()
+    db.prepare(`VACUUM`).run()
+    
     
     const insertSTAT = db.prepare(`
         INSERT OR IGNORE INTO stat_piece ( piece_id, stat_id, value, con_range) VALUES
@@ -159,6 +168,7 @@ if (add) {
         ( 9, 10, '+15.0', '3'),
         ( 11, 2, '+30%', '3'),
         ( 12, 3, '0.5', '0'),
+        ( 12, 11, '', '0'),
         ( 13, 8, '2.0', '2'),
         ( 14, 1, '12', '0'),
         ( 14, 3, '2.0', '0'),
@@ -179,7 +189,7 @@ if (add) {
         ( 24, 1, '4', '0'),
         ( 24, 3, '1.0', '0'),
         ( 25, 3, '0.65', '0'),
-        ( 25, 1, '2', '0'),;
+        ( 25, 1, '2', '0');
     `)
 
     insertSTAT.run()
