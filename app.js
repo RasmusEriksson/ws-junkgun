@@ -8,6 +8,18 @@ import indexRouter from './routes/index.js'
 import userRouter from './routes/users.js'
 import junkRouter from './routes/junk.js'
 
+/*
+import { createClient } from 'redis'
+
+const client = createClient({ url: process.env.REDIS_URL })
+await client.connect()
+
+await client.set('key', 'node redis')
+const value = await client.get('key')
+console.log("THIS IS A VALUE APPARENTLY:     ",value)
+*/
+
+
 const app = express()
 const port = 3000 || process.env.PORT
 const isProduction = process.env.NODE_ENV === 'production'

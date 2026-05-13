@@ -75,19 +75,39 @@ const add = false
 if (add) {
     //ADD BASIC PIECE TO DATABASE
     
-    /*const insertPIECE = db.prepare(`
+    const insertPIECE = db.prepare(`
         INSERT OR IGNORE INTO piece (id, name, quality, description, weight, connections, rating, rating_amount) VALUES
+        (1, 'Handle', 1, 'description', 3.0, 3, 0, 0),
+        (2, 'Pressure Cannon', 2, 'description', 2.5, 2, 0, 0),
         (3, 'Skateboard', 3, 'This is SICK AS FRICK hoooolyyyyy dude', 3.0, 3, 0, 0),
         (4, 'Stupid', 4, 'An uncontrollable sensation of RAGE and HATRED overcomes you, your circuits start overheating from the immense WRATH this THING gives you. Probably the worst thing you’ve ever seen, at least that’s what your sensors tell you.', 5.0, 100, 0, 0),
         (5, 'Darter', 1, 'It resembles a poorly carved wooden skull of a long since gone animal, it appears to be made by something with dexterous hands.', 4.0, 2, 0, 0),
         (6, 'Fish Tail', 2, 'It’s been in the pile for so long that mechanical worms have eaten out everything remotely edible from the spine, all that remains are the corrosive leftovers', 2.0, 0, 0, 0),
-        (7, 'Banaba', 1, 'The outer shell has somehow hardened to be like stone, you can hear the old rotten inside move around within it.', 1.0, 3, 0, 0);
+        (7, 'Banaba', 1, 'The outer shell has somehow hardened to be like stone, you can hear the old rotten inside move around within it.', 1.0, 3, 0, 0),
+        (8, 'Conditioner', 1, 'description', 2.5, 3, 0, 0),
+        (9, 'Pipe', 1, 'description', 1.0, 2, 0, 0),
+        (10, 'Box', 1, 'description', 1.5, 4, 0, 0),
+        (11, 'Grilled Cheese', 2, 'description', 3.0, 0, 0, 0),
+        (12, 'Quickie', 2, 'description', 5.0, 1, 0, 0),
+        (13, 'Shrew', 3, 'description', 3.0, 2, 0, 0),
+        (14, 'Welded Barrel', 2, 'description', 4.0, 2, 0, 0),
+        (15, 'Bad Flask', 3, 'description', 5.0, 2, 0, 0),
+        (16, 'The Slug', 3, 'description', 4.0, 0, 0, 0),
+        (17, 'Battery', 1, 'description', 2.0, 2, 0, 0),
+        (18, 'Can of Rage', 2, 'description', 3.0, 3, 0, 0),
+        (19, 'Chunk', 1, 'description', 2.5, 6, 0, 0),
+        (20, 'Donut', 2, 'description', 2.5, 3, 0, 0),
+        (21, 'Ube Juice', 1, 'description', 2.5, 2, 0, 0),
+        (22, 'Brick', 1, 'description', 3.0, 3, 0, 0),
+        (23, 'Stone Fist', 3, 'description', 5.0, 5, 0, 0),
+        (24, 'Mini Cannon', 1, 'description', 4.0, 1, 0, 0),
+        (25, 'Big Nail', 1, 'description', 3.0, 0, 0, 0);
     `)
 
     //db.prepare(`DELETE FROM piece WHERE rowid = 5;`).run()
     //db.prepare(`VACUUM`).run()
 
-    insertPIECE.run()*/
+    insertPIECE.run()
     
     //ADD RATING TO DATABASE
     /*
@@ -99,9 +119,8 @@ if (add) {
     insertRATING.run()*/
 
     //ADD STATBASE TO DATABASE
-    /*
     const insertSTATBASE = db.prepare(`
-        INSERT INTO stat (id, name) VALUES
+        INSERT OR IGNORE INTO stat (id, name) VALUES
         (1, 'dmg'),
         (2, 'fir'),
         (3, 'rel'),
@@ -116,24 +135,54 @@ if (add) {
         (12, 'no_dmg');
     `)
 
-    insertSTATBASE.run()*/
+    insertSTATBASE.run()
 
     //ADD NEW PIECE STAT TO DATABASE
     
-    /*
+    
     const insertSTAT = db.prepare(`
         INSERT OR IGNORE INTO stat_piece ( piece_id, stat_id, value, con_range) VALUES
-        ( 3, 2, '0.25', '2'),
-        ( 3, 9, '4.0', '0'),
+        ( 1, 3, '1.0', '0'),
+        ( 2, 1, '0', '0'),
+        ( 2, 3, '1.5', '0'),
+        ( 2, 6, '15.0', '0'),
+        ( 2, 12, '', '0'),
+        ( 3, 2, '+25%', '2'),
+        ( 3, 9, '+4.0', '0'),
         ( 4, 8, '8', '2'),
         ( 5, 1, '1', '0'),
         ( 5, 3, '1.0', '0'),
         ( 5, 8, '2', '0'),
         ( 6, 8, '4', '1'),
-        ( 7, 7, '10', '0');
+        ( 7, 7, '+10', '0'),
+        ( 8, 2, '+15%', '3'),
+        ( 9, 10, '+15.0', '3'),
+        ( 11, 2, '+30%', '3'),
+        ( 12, 3, '0.5', '0'),
+        ( 13, 8, '2.0', '2'),
+        ( 14, 1, '12', '0'),
+        ( 14, 3, '2.0', '0'),
+        ( 14, 6, '5.0', '0'),
+        ( 15, 1, '20', '0'),
+        ( 15, 3, '3.0', '0'),
+        ( 15, 6, '10.0', '0'),
+        ( 16, 5, '+6', '3'),
+        ( 16, 10, '-30.0', '3'),
+        ( 17, 9, '+2.5', '0'),
+        ( 18, 5, '+3.0', '2'),
+        ( 19, 10, '-5.0', '2'),
+        ( 20, 7, '+20', '0'),
+        ( 20, 10, '+20', '2'),
+        ( 21, 5, '+1', '3'),
+        ( 22, 6, '3.5', '2'),
+        ( 23, 6, '8.5', '2'),
+        ( 24, 1, '4', '0'),
+        ( 24, 3, '1.0', '0'),
+        ( 25, 3, '0.65', '0'),
+        ( 25, 1, '2', '0'),;
     `)
 
-    insertSTAT.run()*/
+    insertSTAT.run()
     
     //ADD NEW USER TO DATABASE
     /*

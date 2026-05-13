@@ -317,7 +317,7 @@
 }
 
 .q1 {
-        backdrop-filter: brightness(20%) saturate(50%) invert(0%) sepia(1%) saturate(2000%) hue-rotate(203deg) brightness(124%) contrast(74%);
+        backdrop-filter: brightness(20%) saturate(50%) invert(0%) sepia(1%) saturate(1000%) hue-rotate(203deg) brightness(124%) contrast(74%);
         border-color: var(--1-quality);
         color: var(--1-quality);
 }
