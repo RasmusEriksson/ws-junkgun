@@ -110,7 +110,7 @@ router.post("/signin",
                         INSERT INTO user (name, email, password_hash) VALUES (?,?,?)
                     `).run(username,email,hash)
 
-                return res.redirect("/")
+                return res.redirect("/users/login")
             }
             else {
                 return res.json({message:"Your passwords didnt match!"})
